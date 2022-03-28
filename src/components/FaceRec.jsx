@@ -1,8 +1,11 @@
-import * as faceapi from "face-api.js";
+import React from "react";
+import * as faceapi from "face-api.js"
 import { useEffect, useRef, useState } from "react";
+import person from '../person.jpg';
 
 function FaceRec() {
     const videoRef = useRef(null);
+    const imgRef = useRef(null);
     const canvasRef = useRef(null);
 
     const [ isOnPage, setIsOnPage] = useState(true);
@@ -12,7 +15,7 @@ function FaceRec() {
         setInterval(async () => {
         if(isOnPage){
             console.log("inside if(isOnPage)")
-            canvasRef.current.innerHTML = faceapi.createCanvasFromMedia(videoRef.current);
+            canvasRef.current.innerHTML = faceapi.createCanvasFromMedia(imgRef.current);
             const displaySize = {
                 width: 720,
                 height: 560,
@@ -21,7 +24,8 @@ function FaceRec() {
         
         console.log("over detections")
 
-        const detections = await faceapi.detectAllFaces(videoRef.current, new 
+        const image = document.getElementById("image")
+        const detections = await faceapi.detectAllFaces(image, new 
         faceapi.TinyFaceDetectorOptions()).withFaceLandmarks().withFaceExpressions();
         console.log(detections)
 
@@ -44,13 +48,20 @@ function FaceRec() {
 
     const detectFaces = async () => {
         console.log("Started detection")
-        const detections = await faceapi
-            .detectAllFaces(videoRef.current, new faceapi.TinyFaceDetectorOptions())
-            .withFaceLandmarks()
-            .withFaceExpressions()
+        // const detections = await faceapi
+        //     .detectAllFaces(videoRef.current, new faceapi.TinyFaceDetectorOptions())
+        //     .withFaceLandmarks()
+        //     .withFaceExpressions()
+
+        setInterval(async () => {
+                console.log("inne")
+                const detections = await faceapi.detectAllFaces(videoRef.current, 
+                    new faceapi.TinyFaceDetectorOptions()).withFaceLandmarks().withFaceExpressions()
+                    console.log("Finished detection")
+                    console.log(detections)
+            },100)
             
-        console.log("Finished detection")
-        console.log(detections)
+        
 
         // console.log(detections)
         //  setInterval(async () => {
@@ -66,7 +77,7 @@ function FaceRec() {
         const stream = await navigator.mediaDevices.getUserMedia({video:true});
         videoRef.current.srcObject = stream;
         console.log("video started");
-        detectFaces()
+        handleVideoPlay()
     }
 
     useEffect(() => {
@@ -89,10 +100,13 @@ function FaceRec() {
         getUserMedia();
     },[]);
 
-    
+
     return (
     <div className="FaceRec">
+        <script src="../face-api.min.js"></script>
         <video id="video" width="720" height="560" ref={videoRef} autoPlay muted></video>
+        {/* <img src={person} ref={imgRef} id="image" ></img> */}
+
         <canvas id="canvas" ref={canvasRef}></canvas>
     </div>
     );
