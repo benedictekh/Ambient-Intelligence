@@ -2,12 +2,11 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import ReactDOM from "react-dom";
 
-export function CreateUserForm(props) {
+export function CreateUserForm() {
   const [name, setName] = useState("");
   const [yearBorn, setYearBorn] = useState(null);
   const [role, setRole] = useState(null);
   const [preference, setPreference] = useState(null);
-  const [userData, setUserData] = useState({});
 
   async function createUser() {
     axios
@@ -22,21 +21,6 @@ export function CreateUserForm(props) {
       });
   }
 
-  /*useEffect(() => {
-    getAllUsersList();
-  }, []);*/
-
-  function handleSubmit() {
-    /*setUserData({
-      name: name,
-      yearBorn: yearBorn,
-      role: role,
-      preference: preference,
-    });
-    console.log(userData);*/
-    //createUser(userData);
-  }
-
   return (
     <div>
       <form onSubmit={createUser}>
@@ -45,7 +29,7 @@ export function CreateUserForm(props) {
           <input
             name="name"
             type="text"
-            value={name}
+            value={name || ""}
             onChange={(e) => setName(e.target.value)}
           />
         </label>
@@ -53,7 +37,7 @@ export function CreateUserForm(props) {
           Enter the year you were born:
           <input
             type="text"
-            value={yearBorn}
+            value={yearBorn || ""}
             onChange={(e) => setYearBorn(e.target.value)}
           />
         </label>
@@ -61,7 +45,7 @@ export function CreateUserForm(props) {
           Enter your role:
           <input
             type="text"
-            value={role}
+            value={role || ""}
             onChange={(e) => setRole(e.target.value)}
           />
         </label>
@@ -69,7 +53,7 @@ export function CreateUserForm(props) {
           Enter your preference:
           <input
             type="text"
-            value={preference}
+            value={preference || ""}
             onChange={(e) => {
               setPreference(e.target.value);
             }}
