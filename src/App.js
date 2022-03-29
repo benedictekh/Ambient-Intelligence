@@ -1,5 +1,5 @@
 import "./App.css";
-import { AllUsersList } from "./components/usersList";
+import { AllUsersList } from "./components/allUsersList";
 import { DefaultView } from "./views/DefaultView";
 import { PersonalizedView } from "./views/PersonalizedView";
 import {
