@@ -1,4 +1,4 @@
-import { AllUsersList } from "../components/usersList"
+import { AllUsersList } from "../components/allUsersList"
 
 export function DefaultView() {
     return(
