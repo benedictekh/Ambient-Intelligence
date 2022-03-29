@@ -22,9 +22,9 @@ export function AllUsersList(props) {
     <div>
       {allUsersAPI.map((item, i) => {
         return (
-          <div key={item.name}>
+          <div key={item.name} className="userList">
             <Link to='/user' state={{name: item.name}}>
-              <button>
+              <button className="userList-buttons">
                 {item.name}
               </button>
             </Link>
