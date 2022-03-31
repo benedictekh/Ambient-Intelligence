@@ -12,9 +12,9 @@ board.on("ready", () => {
   const red = new Led(9);
   const yellow = new Led(4);
   const blue = new Led(13);
-  //const servo = new Servo(7);
+  const servo = new Servo(7);
   const ledModes = [red, yellow, blue];
-  //servo.sweep();
+  servo.sweep();
   handleLedChange(ledModes[1]);
 });
 
