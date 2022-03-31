@@ -1,12 +1,22 @@
 import "./App.css";
 import { AllUsersList } from "./components/allUsersList";
-import { CreateUserForm } from "./components/CreateUserForm";
+import { DefaultView } from "./views/DefaultView";
+import { PersonalizedView } from "./views/PersonalizedView";
+import {
+  BrowserRouter,
+  Routes,
+  Route,
+  Link
+} from "react-router-dom";
 
 function App() {
   return (
-    <div className="App">
-      <CreateUserForm></CreateUserForm>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<DefaultView />} />
+        <Route path="/user" element={<PersonalizedView />} />     
+      </Routes>
+    </BrowserRouter>
   );
 }
 
