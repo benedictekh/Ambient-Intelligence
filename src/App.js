@@ -2,6 +2,7 @@ import "./App.css";
 import { AllUsersList } from "./components/allUsersList";
 import { DefaultView } from "./views/DefaultView";
 import { PersonalizedView } from "./views/PersonalizedView";
+import { Arduino } from './components/Arduino'
 import {
   BrowserRouter,
   Routes,
@@ -11,12 +12,13 @@ import {
 
 function App() {
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<DefaultView />} />
-        <Route path="/user" element={<PersonalizedView />} />     
-      </Routes>
-    </BrowserRouter>
+    // <BrowserRouter>
+    //   <Routes>
+    //     <Route path="/" element={<DefaultView />} />
+    //     <Route path="/user" element={<PersonalizedView />} />     
+    //   </Routes>
+    // </BrowserRouter>
+    <Arduino></Arduino>
   );
 }
 
