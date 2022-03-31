@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import socketIOClient from 'socket.io-client';
 
-require('dotenv').config();
+// require('dotenv').config();
 
 export default function ClientComponent() {
   const [light, setLight] = useState('');
