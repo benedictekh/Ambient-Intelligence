@@ -1,4 +1,6 @@
 import "./App.css";
+import CreateFaceGroup from "./components/CreateFaceGroup";
+import Photo from "./components/Photo";
 // import { AllUsersList } from "./components/allUsersList";
 // import { CreateUserForm } from "./components/CreateUserForm";
 import Recognition from "./components/Recognition";
@@ -8,7 +10,8 @@ function App() {
   return (
     <div className="App">
       {/* <CreateUserForm></CreateUserForm> */}
-      <TakePhoto></TakePhoto>
+      {/* <Recognition></Recognition> */}
+      <CreateFaceGroup></CreateFaceGroup>
     </div>
   );
 }

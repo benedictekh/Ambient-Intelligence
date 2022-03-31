@@ -1,13 +1,21 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { faceApiForUpload } from "./FaceApi";
 import "./ImageUpload.css";
 import TakePhoto from "./TakePhoto";
+import Webcam from "react-webcam";
 
-const ImageUpload = () => {
+const ImageUpload_copy = () => {
 
   const [data, setData] = useState([])
   const [file, setFile] = useState({});
   const [outputImage, setOutputImage] = useState(false);
+  const webcamRef = useRef(null);
+
+  const videoConstraints = {
+    width: 1280,
+    height: 720,
+    facingMode: 'user',
+  };
 
   const faceRectangleStyle = (item) => {
     return ({
@@ -28,10 +36,34 @@ const ImageUpload = () => {
     console.log(data);
   }, [data])
 
-  
+  // const handleUpload = (event) => {
+  //   TakePhoto.startCamera();
+  //   setFile(TakePhoto.takeSnapshot());
+  // }
+
   const handleUpload = (event) => {
-    setFile(event.target.files[0]);
+    // setFile(webcamRef.current.getScreenshot());
+    // console.log(webcamRef.current.getScreenshot())
+    var img = new Image(500,500);
+    img.src = webcamRef.current.getScreenshot();
+    setFile(img)
   }
+
+    //   capture = () => {
+    //     const imageSrc = this.webcam.getScreenshot();
+    //     this.setState({
+    //         ImageData: imageSrc
+    //     })
+    //     this.handleSubmit(imageSrc)
+    // };
+
+    // Upload to local seaweedFS instance
+  const uploadImage = async file => {
+    const formData = new FormData();
+    formData.append('file', file);
+
+    // Connect to a seaweedfs instance
+  };
 
 
   const handleSubmit = async () => {
@@ -60,8 +92,10 @@ const ImageUpload = () => {
         <div className='center'>
           <div>
             <div className='file-input'>
-              <input type="file" id="file" name="file" className='file' accept=".jpg,.jpeg,.png" onChange={handleUpload} />
-              <label htmlFor="file">Select file</label>
+                <Webcam audio={false} ref={webcamRef} screenshotFormat="image/jpg" videoConstraints={videoConstraints} />
+                <button onClick={handleUpload}>Capture photo</button>
+              {/* <input type="file" id="file" name="file" className='file' accept=".jpg,.jpeg,.png" onChange={handleUpload} />
+              <label htmlFor="file">Select file</label> */}
             </div>
             <button className={file.name ? 'submit-btn' : 'disabled-submit-btn'} type="button" onClick={handleSubmit}>SUBMIT</button>
           </div>
@@ -103,4 +137,4 @@ const ImageUpload = () => {
   );
 }
 
-export default ImageUpload;
+export default ImageUpload_copy;

@@ -18,7 +18,7 @@ class TakePhoto extends React.Component {
     }
 
     capture = () => {
-        const imageSrc = this.webcam.getScreenshot({width: 5000, height: 5000});
+        const imageSrc = this.webcam.getScreenshot();
         this.setState({
             ImageData: imageSrc
         })
@@ -61,19 +61,24 @@ class TakePhoto extends React.Component {
 
     handleSubmit = async (image) => {
         try {
+
+            
             // console.log(this.state.ImageData)
-            var img = new Image();
+            var img = new Image(500,500);
             // img.src = `data:image/jpg;base64,${this.state.ImageData}`;
             img.src = image
-
+        
 
             console.log(img)
-        const response = await faceApiForUpload.post(
-            `/face/v1.0/detect`,
-            img
-        );
+            const response = await faceApiForUpload.post(
+                `/face/v1.0/detect`,
+                img
+                
+            );
+    
         // setData(response.data);
             console.log(response.data)
+
         // setOutputImage(true);
         }
         catch (err) {
