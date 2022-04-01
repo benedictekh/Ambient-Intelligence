@@ -12,13 +12,13 @@ import {
 
 function App() {
   return (
-    // <BrowserRouter>
-    //   <Routes>
-    //     <Route path="/" element={<DefaultView />} />
-    //     <Route path="/user" element={<PersonalizedView />} />     
-    //   </Routes>
-    // </BrowserRouter>
-    <Arduino></Arduino>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<DefaultView />} />
+        <Route path="/user" element={<PersonalizedView />} />     
+      </Routes>
+    </BrowserRouter>
+    // <Arduino></Arduino>
   );
 }
 
