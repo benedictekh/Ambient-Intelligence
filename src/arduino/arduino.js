@@ -1,7 +1,7 @@
 const { Board, Led, Servo } = require("johnny-five");
 //const { SerialPort } = require("serialport");
 
-const board = new Board({ port: "COM5" });
+const board = new Board({ port: "COM6" });
 
 board.on("open", () => {
   console.log("serial port open");
@@ -12,9 +12,9 @@ board.on("ready", () => {
   const red = new Led(9);
   const yellow = new Led(4);
   const blue = new Led(13);
-  const servo = new Servo(7);
+  // const servo = new Servo(7);
   const ledModes = [red, yellow, blue];
-  servo.sweep();
+  // servo.sweep();
   handleLedChange(ledModes[1]);
 });
 
