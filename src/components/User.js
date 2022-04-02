@@ -11,14 +11,13 @@ export function User(props) {
     async function getUserPreference(name) {
         axios.get(`http://localhost:5000/user/userDB/get/${name}`).then((response) => {
         setUserPreference(response.data.user.preference);
-        
         })
     }
 
     useEffect(() => {
         getUserPreference(props.name);
         socket.on("connect", () => {
-        console.log(socket.id); // ojIckSD2jqNzOqIrAGzL
+        console.log(socket.id); 
     });
     }, []);
 
