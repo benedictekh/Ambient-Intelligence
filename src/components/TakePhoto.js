@@ -11,7 +11,9 @@ const videoConstraints = {
     facingMode: "user"
 };
 
-export const WebcamCapture = () => {
+export const TakePhoto = () => {
+
+    var users = {'0dc77f93-1e76-4ca7-91c5-ee5ce68a98ff' : 'Benedicte'}
 
     const [image,setImage]=useState('');
     const webcamRef = React.useRef(null);
@@ -45,7 +47,6 @@ export const WebcamCapture = () => {
 
     
   const handleSubmit = async () => {
-
     try {
         const s = image.split(",");
         const blob = b64toBlob(s[1]);
@@ -64,6 +65,8 @@ export const WebcamCapture = () => {
             body
       )
       console.log(resp)
+      var identifiedUser = users[resp.data[0].candidates[0].personId]
+      console.log(identifiedUser)
     }
     catch (err) {
       console.log(err.response.data);
@@ -92,7 +95,6 @@ export const WebcamCapture = () => {
     return (
         <div className="webcam-container">
             <div className="webcam-img">
-
                 {image == '' ? <Webcam
                     audio={false}
                     height={200}
