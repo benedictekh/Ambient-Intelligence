@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { faceApiForUpload } from "./FaceApi";
+import { faceApiForUpload } from "../FaceApi";
 import "./ImageUpload.css";
 import TakePhoto from "./TakePhoto";
 
-const SendImage = (props) => {
+const ImageUpload = () => {
 
   const [data, setData] = useState([])
   const [file, setFile] = useState({});
@@ -28,16 +28,17 @@ const SendImage = (props) => {
     console.log(data);
   }, [data])
 
-//   const handleUpload = (event) => {
-//     TakePhoto.startCamera();
-//     setFile(TakePhoto.takeSnapshot());
-//   }
+  
+  const handleUpload = (event) => {
+    setFile(event.target.files[0]);
+  }
+
 
   const handleSubmit = async () => {
     try {
       const response = await faceApiForUpload.post(
         `/face/v1.0/detect`,
-        props.file
+        file
       );
       setData(response.data);
       setOutputImage(true);
@@ -48,20 +49,20 @@ const SendImage = (props) => {
     }
   }
 
-//   const handleBack = () => {
-//     setOutputImage(false);
-//     setFile({});
-//   }
+  const handleBack = () => {
+    setOutputImage(false);
+    setFile({});
+  }
 
   return (
     <div>
       {(!outputImage) ?
         <div className='center'>
           <div>
-            {/* <div className='file-input'>
+            <div className='file-input'>
               <input type="file" id="file" name="file" className='file' accept=".jpg,.jpeg,.png" onChange={handleUpload} />
               <label htmlFor="file">Select file</label>
-            </div> */}
+            </div>
             <button className={file.name ? 'submit-btn' : 'disabled-submit-btn'} type="button" onClick={handleSubmit}>SUBMIT</button>
           </div>
         </div>
@@ -94,7 +95,7 @@ const SendImage = (props) => {
             </div> : <p style={{ textAlign: 'center', color: 'red' }}>No face detected</p>
           }
           <div className='center'>
-            {/* <button className='back-btn' type="button" onClick={handleBack}>BACK</button> */}
+            <button className='back-btn' type="button" onClick={handleBack}>BACK</button>
           </div>
         </div>
       }
@@ -102,4 +103,4 @@ const SendImage = (props) => {
   );
 }
 
-export default SendImage;
+export default ImageUpload;

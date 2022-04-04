@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
-import { faceApiForUrl } from "./FaceApi";
-import "./ImageUrl.css";
+import { faceApiForUpload } from "../FaceApi";
+// import "./ImageUpload.css";
+import TakePhoto from "./TakePhoto";
 
-const ImageUrl = () => {
+const SendImage = (props) => {
 
   const [data, setData] = useState([])
-  const [image, setImage] = useState("");
+  const [file, setFile] = useState({});
   const [outputImage, setOutputImage] = useState(false);
 
   const faceRectangleStyle = (item) => {
@@ -27,13 +28,16 @@ const ImageUrl = () => {
     console.log(data);
   }, [data])
 
+//   const handleUpload = (event) => {
+//     TakePhoto.startCamera();
+//     setFile(TakePhoto.takeSnapshot());
+//   }
+
   const handleSubmit = async () => {
     try {
-      const response = await faceApiForUrl.post(
+      const response = await faceApiForUpload.post(
         `/face/v1.0/detect`,
-        {
-          url: image
-        }
+        props.file
       );
       setData(response.data);
       setOutputImage(true);
@@ -44,25 +48,28 @@ const ImageUrl = () => {
     }
   }
 
-  const handleBack = () => {
-    setOutputImage(false);
-    setImage("");
-  }
+//   const handleBack = () => {
+//     setOutputImage(false);
+//     setFile({});
+//   }
 
   return (
     <div>
       {(!outputImage) ?
-        <div className="center">
+        <div className='center'>
           <div>
-            <input type="text" placeholder="paste image url here" value={image} onChange={event => setImage(event.target.value)} />
-            <button className={image ? 'submit-btn' : 'disabled-submit-btn'} type="button" onClick={handleSubmit}>SUBMIT</button>
+            {/* <div className='file-input'>
+              <input type="file" id="file" name="file" className='file' accept=".jpg,.jpeg,.png" onChange={handleUpload} />
+              <label htmlFor="file">Select file</label>
+            </div> */}
+            <button className={file.name ? 'submit-btn' : 'disabled-submit-btn'} type="button" onClick={handleSubmit}>SUBMIT</button>
           </div>
         </div>
         :
         <div className='output-container'>
           <div className="center">
             <div className="center-output-image">
-              <img src={image} alt="output from azure" />
+              <img src={URL.createObjectURL(file)} alt="output from azure" />
               {data && data.map(item => {
                 return (
                   <div key={item.faceId} style={faceRectangleStyle(item)}></div>
@@ -76,7 +83,6 @@ const ImageUrl = () => {
               {
                 data.map(item => {
                   return (
-
                     <div key={item.faceId} className="element">
                       <p>Gender: {item.faceAttributes.gender}</p>
                       <p>Age: {item.faceAttributes.age}</p>
@@ -88,7 +94,7 @@ const ImageUrl = () => {
             </div> : <p style={{ textAlign: 'center', color: 'red' }}>No face detected</p>
           }
           <div className='center'>
-            <button className='back-btn' type="button" onClick={handleBack}>BACK</button>
+            {/* <button className='back-btn' type="button" onClick={handleBack}>BACK</button> */}
           </div>
         </div>
       }
@@ -96,4 +102,4 @@ const ImageUrl = () => {
   );
 }
 
-export default ImageUrl;
+export default SendImage;

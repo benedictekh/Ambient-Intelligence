@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import ImageUrl from './ImageUrl';
 import ImageUpload from './ImageUpload';
 import './Recognition.css';
-import ImageUpload_copy from './ImageUpload_copy';
 
 
 const Recognition = () => {

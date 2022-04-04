@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import Webcam from 'react-webcam';
 import ImageUpload from "./ImageUpload";
 import SendImage from "./SendImage";
-import { faceApiForUpload } from "./FaceApi";
+import { faceApiForUpload } from "../FaceApi";
+import 'base64-arraybuffer';
 
 
 class TakePhoto extends React.Component {
@@ -58,6 +59,7 @@ class TakePhoto extends React.Component {
         console.log(imageObject)
         
     }
+    
 
     handleSubmit = async (image) => {
         try {
@@ -68,6 +70,9 @@ class TakePhoto extends React.Component {
             // img.src = `data:image/jpg;base64,${this.state.ImageData}`;
             img.src = image
         
+            // var file = image.substring(23).replace(' ', '+');
+            // var img = Base64Binary.decodeArrayBuffer(file);
+
 
             console.log(img)
             const response = await faceApiForUpload.post(

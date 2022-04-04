@@ -3,6 +3,8 @@ const baseURL = "https://ambient-intelligence-group-3.cognitiveservices.azure.co
 const subscriptionKey = "86c96d069b2e48c891a35d82c9cc6ff7";
 const faceAttributes = "age,gender,headPose,smile,facialHair,glasses,emotion,hair,makeup,occlusion,accessories,blur,exposure,noise";
 const detectionModel = "detection_01";
+const recognitionModel = 'recognition_04';
+const detectionModel03 = 'detection_03';
 export const faceApiForUrl = axios.create({
     baseURL: baseURL,
     timeout: 50000,
@@ -29,5 +31,51 @@ export const faceApiForUpload = axios.create({
         returnFaceLandmarks: false,
         returnFaceAttributes: faceAttributes,
         detectionModel: detectionModel
+    }
+});
+export const faceApiForCreatePersonGroup = axios.create({
+    baseURL: baseURL,
+    timeout: 50000,
+    headers: {
+        "Ocp-Apim-Subscription-Key": subscriptionKey,
+        "Content-Type": "application/json"
+    },
+    params: {
+        personGroupId: 'test',
+    }
+});
+export const faceApiForAddFaceToPerson = axios.create({
+    baseURL: baseURL,
+    timeout: 50000,
+    headers: {
+        "Ocp-Apim-Subscription-Key": subscriptionKey,
+        "Content-Type": "application/octet-stream"
+    },
+    params: {
+        personGroupId: 'test',
+        personId: '0dc77f93-1e76-4ca7-91c5-ee5ce68a98ff',
+        detectionModel: detectionModel03
+    }
+});
+export const faceApiForIdentification = axios.create({
+    baseURL: baseURL,
+    timeout: 50000,
+    headers: {
+        "Ocp-Apim-Subscription-Key": subscriptionKey,
+        "Content-Type": "application/json"
+    },
+    params: {
+
+    }
+});
+export const faceApiForTraining = axios.create({
+    baseURL: baseURL,
+    timeout: 50000,
+    headers: {
+        "Ocp-Apim-Subscription-Key": subscriptionKey,
+        "Content-Type": "application/octet-stream"
+    },
+    params: {
+        personGroupId: 'test',
     }
 });
