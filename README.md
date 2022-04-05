@@ -15,10 +15,13 @@ PHOTO
 To be able to connect the arduino to the app, you have to follow these steps:
 1. If you have not already, download the [Arduino IDE](https://www.arduino.cc/en/software)
 2. Open the Arduino IDE
-3. FirmataPluss
+3. Connect the Arduino UNO to your computer
+4. Download the StandardFirmataPluss code example ...
 
 ### How To Run the Arduino Server Code
-1. 
+1. Navigate to the server folder of the project and run `npm install`
+2. Check whi
+3. Run the code with `node server.js`
 
 
 
