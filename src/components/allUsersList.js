@@ -1,6 +1,8 @@
 import { getAllUsers } from "../service/apiCalls";
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { Link } from 'react-router-dom';
+import './usersList.css';
 
 export function AllUsersList(props) {
   const [allUsersAPI, setAllUsersAPI] = useState([]);
@@ -20,8 +22,12 @@ export function AllUsersList(props) {
     <div>
       {allUsersAPI.map((item, i) => {
         return (
-          <div>
-            <p>{item.name}</p>
+          <div key={item.name} className="userList">
+            <Link to='/user' state={{name: item.name}}>
+              <button className="userList-buttons">
+                {item.name}
+              </button>
+            </Link>
           </div>
         );
       })}
