@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import Webcam from "react-webcam";
 import { faceApiForAddFaceToPerson, faceApiForIdentification, faceApiForUpload } from './FaceApi';
-
 
 const WebcamComponent = () => <Webcam />;
 
@@ -16,13 +16,16 @@ export const TakePhoto = () => {
     var users = {'0dc77f93-1e76-4ca7-91c5-ee5ce68a98ff' : 'Benedicte'}
 
     const [image,setImage]=useState('');
+    const [person, setPerson] = useState(null);
     const webcamRef = React.useRef(null);
+    const [personIdentified, setPersonIdentified] = useState(false);
 
     
     const capture = React.useCallback(
         () => {
         const imageSrc = webcamRef.current.getScreenshot();
         setImage(imageSrc)
+        handleSubmit(imageSrc)
         
     });
 
@@ -46,14 +49,16 @@ export const TakePhoto = () => {
     };
 
     
-  const handleSubmit = async () => {
+  const handleSubmit = async (imageSrc) => {
     try {
-        const s = image.split(",");
+        const s = imageSrc.split(",");
         const blob = b64toBlob(s[1]);
+        console.log(blob)
         const response = await faceApiForUpload.post(
         `/face/v1.0/detect`,
         blob
       );
+      console.log(response)
       let id = new Array();
       response.data.map((person) => {id.push(person.faceId)})
         console.log(id)
@@ -67,12 +72,14 @@ export const TakePhoto = () => {
       console.log(resp)
       var identifiedUser = users[resp.data[0].candidates[0].personId]
       console.log(identifiedUser)
+      setPersonIdentified(true)
+      setPerson(identifiedUser)
     }
     catch (err) {
       console.log(err.response.data);
       window.alert("An error occured");
     }
-  }
+    }
 
     const addPictures = async () => {
         try {
@@ -93,7 +100,16 @@ export const TakePhoto = () => {
     }
 
     return (
-        <div className="webcam-container">
+        <div>
+            {personIdentified ? 
+            <div>
+                <p>Welcome {person}</p>
+                <Link to='/user' state={{name:person}}>
+                    <button>Go to your page</button>
+                </Link>
+            </div>
+            : 
+            <div className="webcam-container">
             <div className="webcam-img">
                 {image == '' ? <Webcam
                     audio={false}
@@ -105,22 +121,17 @@ export const TakePhoto = () => {
                 /> : <img src={image} />}
             </div>
             <div>
-                {image != '' ?
-                    <button onClick={(e) => {
-                        e.preventDefault();
-                        setImage('')
-                    }}
-                        className="webcam-btn">
-                        Retake Image</button> :
-                    <button onClick={(e) => {
-                        e.preventDefault();
-                        capture();
-                    }}
-                        className="webcam-btn">Capture</button>
-                }
+                <button onClick={(e) => {
+                    e.preventDefault();
+                    capture();
+                }}
+                    className="webcam-btn">Capture</button>
             </div>
-            <button onClick={handleSubmit}>send</button>
-            <button onClick={addPictures}>add picture</button>
-        </div>
+            {/* <button onClick={handleSubmit}>Take picture</button> */}
+            {/* <button onClick={addPictures}>add picture</button> */}   
+      </div>
+        }
+      </div>
+
     );
 };

@@ -1,5 +1,6 @@
 import "./App.css";
 import CreateUserGroup from "./components/CreateUserGroup";
+import CreateUserForm from './components/CreateUserForm';
 import { TakePhoto } from "./components/TakePhoto";
 import { AllUsersList } from "./components/allUsersList";
 import { DefaultView } from "./views/DefaultView";
@@ -24,6 +25,7 @@ function App() {
       <Routes>
         <Route path="/" element={<DefaultView />} />
         <Route path="/user" element={<PersonalizedView />} />     
+        <Route path="/createUser" element={<CreateUserForm />} />     
       </Routes>
     </BrowserRouter>
   );
