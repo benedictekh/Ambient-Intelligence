@@ -1,4 +1,28 @@
-# Getting Started with Create React App
+# Ambient Intelligence Project 2022
+## Frontend
+### How To Run Frontend
+1. Clone the project with `git clone xxx`
+2. Navigate to the frontend folder of the project and run `npm install`
+3. Run the code with `npm start`
+
+The project should now open on [localhost/3000](http://localhost:3000/)
+
+## Arduino Server
+### Arduino Setup
+We have used an Arduino UNO starter kit for this project. The setup of the Arduino is shown below:
+PHOTO
+
+To be able to connect the arduino to the app, you have to follow these steps:
+1. If you have not already, download the [Arduino IDE](https://www.arduino.cc/en/software)
+2. Open the Arduino IDE
+3. FirmataPluss
+
+### How To Run the Arduino Server Code
+1. 
+
+
+
+
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
