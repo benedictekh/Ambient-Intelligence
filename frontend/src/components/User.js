@@ -5,7 +5,7 @@ import socketIOClient from 'socket.io-client';
 
 export function User(props) {
     const [userPreference, setUserPreference] = useState([]);
-    const socket = socketIOClient("http://localhost:4001");
+    // const socket = socketIOClient("http://localhost:4001");
 
 
     async function getUserPreference(name) {
@@ -14,42 +14,42 @@ export function User(props) {
         })
     }
 
-    useEffect(() => {
-        getUserPreference(props.name);
-        socket.on("connect", () => {
-        console.log(socket.id); 
-    });
-    }, []);
+    // useEffect(() => {
+    //     getUserPreference(props.name);
+    //     socket.on("connect", () => {
+    //     console.log(socket.id); 
+    // });
+    // }, []);
 
-    useEffect(() => {
-        if(userPreference != null){
-            if(userPreference == 0) {
-                socket.emit('turnOffBlue');
-                socket.emit('turnOfYellow');
-                socket.emit('turnOnRed');
-            }
-            else if(userPreference == 1) {
-                socket.emit('turnOffRed');
-                socket.emit('turnOfYellow');
-                socket.emit('turnOnBlue');
-            }
-            else if(userPreference == 2) {
-                socket.emit('turnOffRed');
-                socket.emit('turnOffBlue');
-                socket.emit('turnOnYellow');
-            }
-            else if(userPreference == 3) {
-                socket.emit('turnOfYellow');
-                socket.emit('turnOnRed');
-                socket.emit('turnOnBlue');
-            }
-            else if(userPreference == 4) {
-                socket.emit('turnOffBlue');
-                socket.emit('turnOnRed');
-                socket.emit('turnOnYellow');
-            }
-        }
-    }, [userPreference])
+    // useEffect(() => {
+    //     if(userPreference != null){
+    //         if(userPreference == 0) {
+    //             socket.emit('turnOffBlue');
+    //             socket.emit('turnOfYellow');
+    //             socket.emit('turnOnRed');
+    //         }
+    //         else if(userPreference == 1) {
+    //             socket.emit('turnOffRed');
+    //             socket.emit('turnOfYellow');
+    //             socket.emit('turnOnBlue');
+    //         }
+    //         else if(userPreference == 2) {
+    //             socket.emit('turnOffRed');
+    //             socket.emit('turnOffBlue');
+    //             socket.emit('turnOnYellow');
+    //         }
+    //         else if(userPreference == 3) {
+    //             socket.emit('turnOfYellow');
+    //             socket.emit('turnOnRed');
+    //             socket.emit('turnOnBlue');
+    //         }
+    //         else if(userPreference == 4) {
+    //             socket.emit('turnOffBlue');
+    //             socket.emit('turnOnRed');
+    //             socket.emit('turnOnYellow');
+    //         }
+    //     }
+    // }, [userPreference])
 
     return(
         <div>

@@ -1,8 +1,7 @@
 import "./App.css";
-import { AllUsersList } from "./components/allUsersList";
-import { DefaultView } from "./views/DefaultView";
+import DefaultView from "./views/DefaultView";
 import { PersonalizedView } from "./views/PersonalizedView";
-import { Arduino } from './components/Arduino'
+import CreateUserForm from "./components/CreateUserForm";
 import {
   BrowserRouter,
   Routes,
@@ -16,9 +15,9 @@ function App() {
       <Routes>
         <Route path="/" element={<DefaultView />} />
         <Route path="/user" element={<PersonalizedView />} />     
+        <Route path="/createUser" element={<CreateUserForm />} />     
       </Routes>
     </BrowserRouter>
-    // <Arduino></Arduino>
   );
 }
 
