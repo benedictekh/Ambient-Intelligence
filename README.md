@@ -31,4 +31,4 @@ The project should now open on [localhost/3000](http://localhost:3000/)
 
 
 ## Backend
-To run the project, you also need to run the backend of the project. The backend code, and how to run it can be found [here](https://github.com/ingeraness/ambient-intelligence-backend)
+To run the project, you also need to run the backend of the project. The backend code, and how to run it can be found [here](https://github.com/ingeraness/ambient-intelligence-backend).
