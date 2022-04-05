@@ -71,9 +71,6 @@ export default function CreateUserForm() {
   }
   
   const TakePhotos = () => {
-
-      var users = {'0dc77f93-1e76-4ca7-91c5-ee5ce68a98ff' : 'Benedicte'}
-
       const [image,setImage] = useState('');
       const webcamRef = React.useRef(null);
 
@@ -94,43 +91,12 @@ export default function CreateUserForm() {
           for (let i = 0; i < slice.length; i++) {
               byteNumbers[i] = slice.charCodeAt(i);
           }
-
           const byteArray = new Uint8Array(byteNumbers);
           byteArrays.push(byteArray);
           }
-
           const blob = new Blob(byteArrays, { type: contentType });
           return blob;
       };
-
-      
-    // const handleSubmit = async () => {
-    //   try {
-    //       const s = image.split(",");
-    //       const blob = b64toBlob(s[1]);
-    //       const response = await faceApiForUpload.post(
-    //       `/face/v1.0/detect`,
-    //       blob
-    //     );
-    //     let id = new Array();
-    //     response.data.map((person) => {id.push(person.faceId)})
-    //       console.log(id)
-    //       const body = {'faceIds': id, 'personGroupId': 'ai'}
-    //       console.log(body)
-
-    //       const resp = await faceApiForIdentification.post(
-    //         '/face/v1.0/identify',
-    //           body
-    //     )
-    //     console.log(resp)
-    //     var identifiedUser = users[resp.data[0].candidates[0].personId]
-    //     console.log(identifiedUser)
-    //   }
-    //   catch (err) {
-    //     console.log(err.response.data);
-    //     window.alert("An error occured");
-    //   }
-    // }
 
     const faceApiForAddFaceToPerson = axios.create({
           baseURL: baseURL,
@@ -199,7 +165,6 @@ export default function CreateUserForm() {
                           className="webcam-btn">Take picture</button>
                   }
               </div>
-              {/* <button onClick={handleSubmit}>send</button> */}
               {numberOfPictures == 10 ?
               <div>
                 <p>You have taken enough pictures now!</p>
