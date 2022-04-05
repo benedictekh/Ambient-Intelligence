@@ -1,6 +1,8 @@
 # Ambient Intelligence Project 2022
 Project in the Ambient Intelligence course at Instituto Superior Técnico in Lisbon 2022.
+
 Project developed by [Benedicte Kaltoft Hansen](https://github.com/benedictekh), [Jonas Rogde Jørgensen](https://github.com/jonasrj97) and [Inger-Ane Schefte](https://github.com/ingeraness).
+
 ## Download the Code
 Clone the project with `git clone https://github.com/benedictekh/Ambient-Intelligence.git`.
 
