@@ -112,7 +112,7 @@ server.listen(port, () => console.log(`Listening on port ${port}`));
 const { Board, Led, Servo } = require("johnny-five");
 const { SerialPort } = require("serialport");
 
-const board = new Board({ port: "COM5" });
+const board = new Board({ port: "COM6" });
 
 board.on("open", () => {
   console.log("serial port open");

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Webcam from "react-webcam";
 import { faceApiForAddFaceToPerson, faceApiForIdentification, faceApiForUpload } from './FaceApi';
 import axios from "axios";
@@ -18,6 +18,7 @@ export const TakePhoto = () => {
     const [person, setPerson] = useState(null);
     const webcamRef = React.useRef(null);
     const [personIdentified, setPersonIdentified] = useState(false);
+    let navigate = useNavigate();
 
     var users = {}
 
@@ -29,6 +30,12 @@ export const TakePhoto = () => {
         console.log(users);
         })
     }
+
+    useEffect(() => {
+        if (person != null){
+            return navigate("/user" , {state: person});
+        }
+        },[person]);
     
     const capture = React.useCallback(
         () => {
@@ -95,30 +102,17 @@ export const TakePhoto = () => {
       setPersonIdentified(true)
       setPerson(users[identifiedPerson])
       console.log(users[identifiedPerson])
+    //   return(
+    //         <Redirect to="/user" state={{name:users[identifiedPerson]}}/>
+
+    //     )
     }
     catch (err) {
       console.log(err.response.data);
       window.alert("An error occured");
-    }
-    }
+        }
 
-    // const addPictures = async () => {
-    //     try {
-    //         const im = webcamRef.current.getScreenshot();
-    //         const s = im.split(",");
-    //         const blob = b64toBlob(s[1]);
-    //         const response = await faceApiForAddFaceToPerson.post(
-    //         `/face/v1.0/persongroups/AI/persons/0dc77f93-1e76-4ca7-91c5-ee5ce68a98ff/persistedFaces`,
-    //         blob
-
-    //     );
-    //     console.log(response)
-    //     }
-    //     catch (err) {
-    //     console.log(err.response.data);
-    //     window.alert("An error occured");
-    //     }
-    // }
+    }
 
     return (
         <div>

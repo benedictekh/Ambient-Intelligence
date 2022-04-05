@@ -3,11 +3,10 @@ import { useLocation } from "react-router-dom";
 
 export function PersonalizedView() {
     const location = useLocation()
-    const { name } = location.state
 
     return(
         <div>
-            <User name={name}></User>
+            <User name={location.state}></User>
         </div>
     )
 }
