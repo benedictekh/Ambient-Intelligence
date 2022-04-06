@@ -1,6 +1,8 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import socketIOClient from 'socket.io-client';
+import './user.css';
 
 
 export function User(props) {
@@ -52,9 +54,12 @@ export function User(props) {
     }, [userPreference])
 
     return(
-        <div>
-            <p>{props.name}</p>
-            <p>{userPreference}</p>
+        <div className="formDiv">
+            <p>Welcome {props.name}!</p>
+            <p>Your light preference is {userPreference}</p>
+            <Link to="/">
+                <button className="button">Back</button>
+            </Link>
         </div>
     );
 }
