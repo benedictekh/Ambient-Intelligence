@@ -62,6 +62,7 @@ io.on("connection", (socket) => {
     console.log("turnOffRed", arg);
     const red = new Led(9);
     red.off();
+    console.log('red is off')
   });
 
   socket.on("turnOnBlue", (arg) => {

@@ -25,29 +25,22 @@ export function User(props) {
 
     useEffect(() => {
         if(userPreference != null){
-            if(userPreference == 0) {
+            if(userPreference == 1) {
+                console.log('runs preference = 1')
                 socket.emit('turnOffBlue');
-                socket.emit('turnOfYellow');
+                socket.emit('turnOffYellow');
                 socket.emit('turnOnRed');
-            }
-            else if(userPreference == 1) {
-                socket.emit('turnOffRed');
-                socket.emit('turnOfYellow');
-                socket.emit('turnOnBlue');
             }
             else if(userPreference == 2) {
+                console.log('runs preference = 2')
                 socket.emit('turnOffRed');
-                socket.emit('turnOffBlue');
-                socket.emit('turnOnYellow');
-            }
-            else if(userPreference == 3) {
-                socket.emit('turnOfYellow');
-                socket.emit('turnOnRed');
+                socket.emit('turnOffYellow');
                 socket.emit('turnOnBlue');
             }
-            else if(userPreference == 4) {
+            else if(userPreference == 3) {
+                console.log('runs preference = 3')
+                socket.emit('turnOffRed');
                 socket.emit('turnOffBlue');
-                socket.emit('turnOnRed');
                 socket.emit('turnOnYellow');
             }
         }

@@ -17,7 +17,7 @@ export default function DefaultView() {
       console.log(socket.id); 
       socket.emit("turnOffRed");
       socket.emit("turnOffBlue");
-      socket.emit("turnOfYellow");
+      socket.emit("turnOffYellow");
     });
   }, []);
   //   const trainData = async () => {
