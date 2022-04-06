@@ -27,8 +27,9 @@ To be able to connect the arduino to the app, you have to follow these steps:
 1. Navigate to the frontend folder of the project and run `npm install`
 2. Run the code with `npm start`
 
-The project should now open on [localhost/3001](http://localhost:3001/)
-It is important that the Arduino Server Code runs before you open localhost/3001.
+The project should now open on [localhost/3001](http://localhost:3001/).
+
+It is important that the Arduino Server Code runs before you open localhost for the frontend.
 
 ## Backend
 To run the project, you also need to run the backend of the project. The backend code, and how to run it can be found [here](https://github.com/ingeraness/ambient-intelligence-backend).
