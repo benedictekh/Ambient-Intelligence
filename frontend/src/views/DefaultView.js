@@ -3,10 +3,9 @@ import "../../src/index.css";
 import CreateUserForm from "../components/CreateUserForm";
 import CreateUserGroup from "../components/CreateUserGroup";
 import { TakePhoto } from "../components/TakePhoto";
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 import { faceApiForTraining } from "../components/FaceApi";
 import React, { useEffect } from "react";
-
 
 export default function DefaultView() {
   const socket = socketIOClient("http://localhost:4001");
@@ -19,27 +18,30 @@ export default function DefaultView() {
       socket.emit("turnOfYellow");
     });
   }, []);
-    const trainData = async () => {
-      try {
-          const response = await faceApiForTraining.post(
-          `/face/v1.0/persongroups/ai/train`
-
+  const trainData = async () => {
+    try {
+      const response = await faceApiForTraining.post(
+        `/face/v1.0/persongroups/ai/train`
       );
-      console.log(response)
-      }
-      catch (err) {
+      console.log(response);
+    } catch (err) {
       console.log(err.response.data);
       window.alert("An error occured");
-      }
-  }
+    }
+  };
 
-  return (
+  /*return (
     <div className="allUsersDiv">
       <p>Welcome! Take a picture or register as a new user</p> 
       <TakePhoto></TakePhoto>
       <Link to='/createUser'>
         <button>Create a new user</button>
       </Link>
+    </div>
+  );*/
+  return (
+    <div className="allUsersDiv">
+      <CreateUserForm></CreateUserForm>
     </div>
   );
 }
