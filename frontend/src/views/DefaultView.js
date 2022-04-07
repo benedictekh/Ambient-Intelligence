@@ -3,11 +3,10 @@ import "../../src/index.css";
 import CreateUserForm from "../components/CreateUserForm";
 import CreateUserGroup from "../components/CreateUserGroup";
 import { TakePhoto } from "../components/TakePhoto";
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 import { faceApiForTraining } from "../components/FaceApi";
 import React, { useEffect } from "react";
 import "../components/takePhoto.css"
-
 
 export default function DefaultView() {
   const socket = socketIOClient("http://localhost:4001");
