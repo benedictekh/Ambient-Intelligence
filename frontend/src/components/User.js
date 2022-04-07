@@ -9,7 +9,6 @@ export function User(props) {
     const [userPreference, setUserPreference] = useState([]);
     const socket = socketIOClient("http://localhost:4001");
 
-
     async function getUserPreference(name) {
         axios.get(`http://localhost:5000/user/userDB/get/${name}`).then((response) => {
         setUserPreference(response.data.user.preference);
@@ -19,26 +18,22 @@ export function User(props) {
     useEffect(() => {
         getUserPreference(props.name);
         socket.on("connect", () => {
-        console.log(socket.id); 
     });
     }, []);
 
     useEffect(() => {
         if(userPreference != null){
             if(userPreference == 1) {
-                console.log('runs preference = 1')
                 socket.emit('turnOffBlue');
                 socket.emit('turnOffYellow');
                 socket.emit('turnOnRed');
             }
             else if(userPreference == 2) {
-                console.log('runs preference = 2')
                 socket.emit('turnOffRed');
                 socket.emit('turnOffYellow');
                 socket.emit('turnOnBlue');
             }
             else if(userPreference == 3) {
-                console.log('runs preference = 3')
                 socket.emit('turnOffRed');
                 socket.emit('turnOffBlue');
                 socket.emit('turnOnYellow');
