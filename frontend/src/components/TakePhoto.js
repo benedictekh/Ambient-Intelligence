@@ -120,7 +120,7 @@ export const TakePhoto = () => {
                     e.preventDefault();
                     capture();
                 }}
-                    className="button">Take a photo</button>
+                    className="button">Take a picture</button>
             </div>
             {/* <button onClick={handleSubmit}>Take picture</button> */}
             {/* <button onClick={addPictures}>add picture</button> */}   

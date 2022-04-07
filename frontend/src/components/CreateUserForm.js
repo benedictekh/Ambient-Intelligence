@@ -157,7 +157,7 @@ export default function CreateUserForm() {
                           setImage('')
                       }}
                           className="webcam-btn">
-                          Take new picture</button> :
+                          New picture</button> :
                       <button onClick={(e) => {
                           e.preventDefault();
                           capture();
