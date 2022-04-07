@@ -221,38 +221,22 @@ export default function CreateUserForm() {
                 onChange={(e) => setYearBorn(e.target.value)}
               />
             </label>
-            <label className="formLabel">
-              Enter your role:
-              <input
-                className="inputBox"
-                type="text"
-                value={role || ""}
-                onChange={(e) => setRole(e.target.value)}
-              />
-            </label>
-            <label className="formLabel">
-              Your light preference:
-              <input
-                list="lights"
-                placeholder="Light preference"
-                onChange={(e) => {
-                  var select = document.getElementById("lights");
-                  var option = select.options[select.selectedIndex].text;
-                  console.log(select);
-                  console.log(option);
-                  console.log("PREF CHANGED");
-                  console.log(this.value);
-
-                  //setPreference(prefVal);
-                }}
-              />
-              <datalist id="lights">
-                <option value="Red">Red</option>
-                <option value="Yellow">Yellow</option>
-                <option value="Blue">Blue</option>
-              </datalist>
-            </label>
-
+            <div>
+            <label className="formLabel" for="role">What is your role: </label>
+            <select className="drop-down" name="role" id="role" onChange={(e) => setRole(e.target.value)}>
+              <option value="1">Parent</option>
+              <option value="2">Child</option>
+              <option value="3">Guest</option>
+            </select>
+            </div>
+            <div>
+            <label className="formLabel" for="light_preference">What is your light Preference: </label>
+            <select className="drop-down" name="light" id="light" onChange={(e) => setPreference(e.target.value)}>
+              <option value="1">Red</option>
+              <option value="2">Yellow</option>
+              <option value="3">Blue</option>
+            </select>
+            </div>
             <button type="submit" className="submitButton">
               Submit
             </button>
