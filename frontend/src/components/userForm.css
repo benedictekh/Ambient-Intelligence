@@ -12,13 +12,19 @@
   font-size: x-large;
 }
 
+.drop-down {
+  width: 30%;
+  align-self: center;
+  margin-bottom: 15px;
+}
+
 .createForm {
   display: flex;
   flex-direction: column;
   justify-content: left;
 }
 .formLabel {
-  margin-top: 10px;
+  margin-bottom: 15px;
   color: white;
 }
 
@@ -31,6 +37,7 @@
   border: white;
   border-radius: 8px;
   font-size: 20px;
+  align-self: center;
 }
 
 .inputBox {
