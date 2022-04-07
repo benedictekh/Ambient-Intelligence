@@ -3,13 +3,14 @@ import { Link, useNavigate } from 'react-router-dom';
 import Webcam from "react-webcam";
 import { faceApiForAddFaceToPerson, faceApiForIdentification, faceApiForUpload } from './FaceApi';
 import axios from "axios";
+import './takePhoto.css'
 
 
 const WebcamComponent = () => <Webcam />;
 
 const videoConstraints = {
-    width: 220,
-    height: 200,
+    width: 400,
+    height: 400,
     facingMode: "user"
 };
 
@@ -78,18 +79,13 @@ export const TakePhoto = () => {
         `/face/v1.0/detect`,
         blob
       );
-      console.log(response)
       let id = new Array();
       response.data.map((person) => {id.push(person.faceId)})
-        console.log(id)
         const body = {'faceIds': id, 'personGroupId': 'ai'}
-        console.log(body)
-
         const resp = await faceApiForIdentification.post(
           '/face/v1.0/identify',
             body
       )
-      console.log(resp)
         let bestMatchValue = 0;
         let identifiedPerson;
         resp.data[0].candidates.map((p) => {
@@ -98,14 +94,9 @@ export const TakePhoto = () => {
                 identifiedPerson = p.personId;
             }
         })
-      console.log(identifiedPerson)
       setPersonIdentified(true)
       setPerson(users[identifiedPerson])
       console.log(users[identifiedPerson])
-    //   return(
-    //         <Redirect to="/user" state={{name:users[identifiedPerson]}}/>
-
-    //     )
     }
     catch (err) {
       console.log(err.response.data);
@@ -115,23 +106,12 @@ export const TakePhoto = () => {
     }
 
     return (
-        <div>
-            {personIdentified ? 
+        <div className="formDiv">
             <div>
-                <p>Welcome {person}</p>
-                <Link to='/user' state={{name:person}}>
-                    <button>Go to your page</button>
-                </Link>
-            </div>
-            : 
-            <div className="webcam-container">
-            <div className="webcam-img">
                 {image == '' ? <Webcam
                     audio={false}
-                    height={200}
                     ref={webcamRef}
                     screenshotFormat="image/jpeg"
-                    width={220}
                     videoConstraints={videoConstraints}
                 /> : <img src={image} />}
             </div>
@@ -140,13 +120,10 @@ export const TakePhoto = () => {
                     e.preventDefault();
                     capture();
                 }}
-                    className="webcam-btn">Capture</button>
+                    className="button">Take a photo</button>
             </div>
             {/* <button onClick={handleSubmit}>Take picture</button> */}
             {/* <button onClick={addPictures}>add picture</button> */}   
       </div>
-        }
-      </div>
-
     );
 };

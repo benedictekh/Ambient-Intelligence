@@ -1,0 +1,24 @@
+.formDiv {
+    width: 40%;
+    align-items: center;
+    text-align: center;
+    padding-top: 200px;
+    padding-bottom: 200px;
+    justify-content: center;
+    background-color: #8b7d7b;
+    margin: auto;
+    width: 50%;
+    padding: 10px;
+    font-size: x-large;
+}
+
+.button {
+    width: 40%;
+    margin-left: 30%;
+    margin-right: 30%;
+    margin-top: 40px;
+    background-color: white;
+    border: white;
+    border-radius: 8px;
+    font-size: 20px;
+}
