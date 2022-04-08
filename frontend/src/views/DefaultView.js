@@ -19,7 +19,8 @@ export default function DefaultView() {
   
   return (
     <div className="formDiv">
-      <p>Welcome! Take a picture or register as a new user</p> 
+      <h2 className="header">Welcome!</h2> 
+      <h2 className="header">Take a picture or register as a new user</h2> 
       <TakePhoto></TakePhoto>
       <Link to='/createUser'>
         <button className="button">Create a new user</button>
