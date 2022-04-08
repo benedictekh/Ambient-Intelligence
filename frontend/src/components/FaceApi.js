@@ -3,8 +3,6 @@ const baseURL = "https://ambient-intelligence-group-3.cognitiveservices.azure.co
 const subscriptionKey = "86c96d069b2e48c891a35d82c9cc6ff7";
 const faceAttributes = "age,gender,headPose,smile,facialHair,glasses,emotion,hair,makeup,occlusion,accessories,blur,exposure,noise";
 const detectionModel = "detection_01";
-const recognitionModel = 'recognition_04';
-const detectionModel03 = 'detection_03';
 export const faceApiForUrl = axios.create({
     baseURL: baseURL,
     timeout: 50000,

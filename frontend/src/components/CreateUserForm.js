@@ -3,9 +3,6 @@ import axios from "axios";
 import ReactDOM from "react-dom";
 import "./userForm.css";
 import {
-  faceApiForAddFaceToPerson,
-  faceApiForIdentification,
-  faceApiForUpload,
   faceApiForTraining,
   faceApiForCreatePersonGroup,
 } from "./FaceApi";
@@ -24,8 +21,6 @@ export default function CreateUserForm() {
   const detectionModel03 = "detection_03";
   const subscriptionKey = "86c96d069b2e48c891a35d82c9cc6ff7";
 
-  const preferenceDict = { Red: 0, Yellow: 1, Blue: 2 };
-
   var numberOfPictures = 0;
 
   async function createUser(userId) {
@@ -38,23 +33,18 @@ export default function CreateUserForm() {
         faceID: userId,
       })
       .then((response) => {
-        console.log(response.data);
       });
     setInfoSubmitted(true);
-    console.log("info submitted");
   }
 
   const addPeople = async (e) => {
     e.preventDefault();
-    console.log("add people");
     try {
       const response = await faceApiForCreatePersonGroup.post(
         `/face/v1.0/persongroups/ai/persons`,
         { name: name }
       );
-      console.log(response);
       setId(response.data.personId);
-      console.log("the new persons id is " + response.data.personId);
       createUser(response.data.personId);
     } catch (err) {
       console.log(err.response.data);
@@ -67,9 +57,7 @@ export default function CreateUserForm() {
       const response = await faceApiForTraining.post(
         `/face/v1.0/persongroups/ai/train`
       );
-      console.log(response);
     } catch (err) {
-      console.log(err.response.data);
       window.alert("An error occured");
     }
   };
@@ -128,7 +116,6 @@ export default function CreateUserForm() {
           `/face/v1.0/persongroups/ai/persons/${id}/persistedFaces`,
           blob
         );
-        console.log(response);
         numberOfPictures = numberOfPictures + 1;
       } catch (err) {
         console.log(err.response.data);

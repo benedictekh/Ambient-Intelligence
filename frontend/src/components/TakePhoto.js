@@ -1,12 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import Webcam from "react-webcam";
-import { faceApiForAddFaceToPerson, faceApiForIdentification, faceApiForUpload } from './FaceApi';
+import { faceApiForIdentification, faceApiForUpload } from './FaceApi';
 import axios from "axios";
 import './takePhoto.css'
-
-
-const WebcamComponent = () => <Webcam />;
 
 const videoConstraints = {
     width: 400,
@@ -28,7 +25,6 @@ export const TakePhoto = () => {
             response.data.map((p) => {
                 users[p.faceID] = p.name
             })
-        console.log(users);
         })
     }
 
@@ -74,7 +70,6 @@ export const TakePhoto = () => {
     try {
         const s = imageSrc.split(",");
         const blob = b64toBlob(s[1]);
-        console.log(blob)
         const response = await faceApiForUpload.post(
         `/face/v1.0/detect`,
         blob
@@ -96,7 +91,6 @@ export const TakePhoto = () => {
         })
       setPersonIdentified(true)
       setPerson(users[identifiedPerson])
-      console.log(users[identifiedPerson])
     }
     catch (err) {
       console.log(err.response.data);
@@ -120,10 +114,8 @@ export const TakePhoto = () => {
                     e.preventDefault();
                     capture();
                 }}
-                    className="button">Take a picture</button>
+                className="button">Take a picture</button>
             </div>
-            {/* <button onClick={handleSubmit}>Take picture</button> */}
-            {/* <button onClick={addPictures}>add picture</button> */}   
       </div>
     );
 };

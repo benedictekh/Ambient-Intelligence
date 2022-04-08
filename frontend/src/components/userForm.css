@@ -47,3 +47,15 @@
 .header {
   color: #292421;
 }
+
+.preference_yellow {
+  color: yellow;
+}
+
+.preference_red {
+  color: red;
+}
+
+.preference_blue {
+  color: blue;
+}

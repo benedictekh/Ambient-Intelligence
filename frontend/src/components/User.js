@@ -9,7 +9,6 @@ export function User(props) {
     const [userPreference, setUserPreference] = useState([]);
     const socket = socketIOClient("http://localhost:4001");
 
-
     async function getUserPreference(name) {
         axios.get(`http://localhost:5000/user/userDB/get/${name}`).then((response) => {
         setUserPreference(response.data.user.preference);
@@ -19,26 +18,22 @@ export function User(props) {
     useEffect(() => {
         getUserPreference(props.name);
         socket.on("connect", () => {
-        console.log(socket.id); 
     });
     }, []);
 
     useEffect(() => {
         if(userPreference != null){
             if(userPreference == 1) {
-                console.log('runs preference = 1')
                 socket.emit('turnOffBlue');
                 socket.emit('turnOffYellow');
                 socket.emit('turnOnRed');
             }
             else if(userPreference == 2) {
-                console.log('runs preference = 2')
                 socket.emit('turnOffRed');
                 socket.emit('turnOffYellow');
                 socket.emit('turnOnBlue');
             }
             else if(userPreference == 3) {
-                console.log('runs preference = 3')
                 socket.emit('turnOffRed');
                 socket.emit('turnOffBlue');
                 socket.emit('turnOnYellow');
@@ -46,10 +41,15 @@ export function User(props) {
         }
     }, [userPreference])
 
+    const preferences = {'1' : 'red', '2' : 'yellow', '3' : 'blue'}
+
     return(
         <div className="formDiv">
-            <p>Welcome {props.name}!</p>
-            <p>Your light preference is {userPreference}</p>
+            <h1 className="header">Welcome {props.name}!</h1>
+            <h2>Your light preference is </h2>
+            {userPreference == '1' ? <h2 className="preference_red">{preferences[userPreference]}</h2> : null}
+            {userPreference == '2' ? <h2 className="preference_yellow">{preferences[userPreference]}</h2> : null}
+            {userPreference == '3' ? <h2 className="preference_blue">{preferences[userPreference]}</h2> : null}
             <Link to="/">
                 <button className="button">Back</button>
             </Link>

@@ -1,10 +1,7 @@
 import socketIOClient from "socket.io-client";
 import "../../src/index.css";
-import CreateUserForm from "../components/CreateUserForm";
-import CreateUserGroup from "../components/CreateUserGroup";
 import { TakePhoto } from "../components/TakePhoto";
 import { Link } from "react-router-dom";
-import { faceApiForTraining } from "../components/FaceApi";
 import React, { useEffect } from "react";
 import "../components/takePhoto.css"
 
@@ -19,23 +16,11 @@ export default function DefaultView() {
       socket.emit("turnOffYellow");
     });
   }, []);
-  //   const trainData = async () => {
-  //     try {
-  //         const response = await faceApiForTraining.post(
-  //         `/face/v1.0/persongroups/ai/train`
-
-  //     );
-  //     console.log(response)
-  //     }
-  //     catch (err) {
-  //     console.log(err.response.data);
-  //     window.alert("An error occured");
-  //     }
-  // }
-
+  
   return (
     <div className="formDiv">
-      <p>Welcome! Take a picture or register as a new user</p> 
+      <h2 className="header">Welcome!</h2> 
+      <h2 className="header">Take a picture or register as a new user</h2> 
       <TakePhoto></TakePhoto>
       <Link to='/createUser'>
         <button className="button">Create a new user</button>
