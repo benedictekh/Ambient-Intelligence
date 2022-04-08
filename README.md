@@ -8,7 +8,7 @@ Clone the project with `git clone https://github.com/benedictekh/Ambient-Intelli
 
 ## Arduino Server
 ### Arduino Setup
-We have used an Arduino UNO starter kit for this project. The setup of the Arduino is shown below:
+We have used an Arduino Starter Kit with an Arduino UNO for this project. The setup of the Arduino is shown below:
 ![Arduino setup](arduino.png)
 
 To be able to connect the arduino to the app, you have to follow these steps:
