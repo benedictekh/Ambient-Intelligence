@@ -121,23 +121,24 @@ export default function CreateUserForm() {
         console.log(err.response.data);
         window.alert("An error occured");
       }
-      const videoConstraints = {
-          width: 220,
-          height: 200,
+    }
+    const videoConstraints = {
+          width: 400,
+          height: 400,
           facingMode: "user"
       };
       
       return (
-          <div className="webcam-container">
-            <p>You have to take 10 pictures</p>
-            <p>You have now taken {numberOfPictures} pictures</p>
+          <div className="formDiv">
+            <h2 className="header">You have to take 10 pictures</h2>
+            <p className="header">You have now taken {numberOfPictures} pictures</p>
               <div className="webcam-img">
                   {image == '' ? <Webcam
                       audio={false}
-                      height={200}
+                      height={400}
                       ref={webcamRef}
                       screenshotFormat="image/jpeg"
-                      width={220}
+                      width={400}
                       videoConstraints={videoConstraints}
                   /> : <img src={image} />}
               </div>
@@ -147,26 +148,26 @@ export default function CreateUserForm() {
                           e.preventDefault();
                           setImage('')
                       }}
-                          className="webcam-btn">
+                          className="submitButton">
                           New picture</button> :
                       <button onClick={(e) => {
                           e.preventDefault();
                           capture();
                       }}
-                          className="webcam-btn">Take picture</button>
+                          className="submitButton">Take picture</button>
                   }
               </div>
               {numberOfPictures == 10 ?
               <div>
                 <p>You have taken enough pictures now!</p>
                 <Link to='/'>
-                  <button onClick={trainData}>Go back to front page</button>
+                  <button className="submitButton" onClick={trainData}>Go back to front page</button>
                 </Link>
               </div>
                : null}
           </div>
         );
-      }};
+      };
 
   return (
     <div>

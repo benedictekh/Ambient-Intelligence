@@ -28,12 +28,12 @@ export function User(props) {
                 socket.emit('turnOffYellow');
                 socket.emit('turnOnRed');
             }
-            else if(userPreference == 2) {
+            else if(userPreference == 3) {
                 socket.emit('turnOffRed');
                 socket.emit('turnOffYellow');
                 socket.emit('turnOnBlue');
             }
-            else if(userPreference == 3) {
+            else if(userPreference == 2) {
                 socket.emit('turnOffRed');
                 socket.emit('turnOffBlue');
                 socket.emit('turnOnYellow');
@@ -48,8 +48,8 @@ export function User(props) {
             <h1 className="header">Welcome {props.name}!</h1>
             <h2>Your light preference is </h2>
             {userPreference == '1' ? <h2 className="preference_red">{preferences[userPreference]}</h2> : null}
-            {userPreference == '2' ? <h2 className="preference_yellow">{preferences[userPreference]}</h2> : null}
             {userPreference == '3' ? <h2 className="preference_blue">{preferences[userPreference]}</h2> : null}
+            {userPreference == '2' ? <h2 className="preference_yellow">{preferences[userPreference]}</h2> : null}
             <Link to="/">
                 <button className="button">Back</button>
             </Link>
