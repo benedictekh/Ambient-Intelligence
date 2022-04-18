@@ -41,11 +41,12 @@ export default function CreateUserForm() {
     e.preventDefault();
     try {
       const response = await faceApiForCreatePersonGroup.post(
-        `/face/v1.0/persongroups/ai/persons`,
+        `/face/v1.0/persongroups/test/persons`,
         { name: name }
       );
       setId(response.data.personId);
-      createUser(response.data.personId);
+      setInfoSubmitted(true);
+      // createUser(response.data.personId);
     } catch (err) {
       console.log(err.response.data);
       window.alert("An error occured");
@@ -55,7 +56,7 @@ export default function CreateUserForm() {
   const trainData = async () => {
     try {
       const response = await faceApiForTraining.post(
-        `/face/v1.0/persongroups/ai/train`
+        `/face/v1.0/persongroups/test/train`
       );
     } catch (err) {
       window.alert("An error occured");
@@ -101,7 +102,7 @@ export default function CreateUserForm() {
         "Content-Type": "application/octet-stream",
       },
       params: {
-        personGroupId: "ai",
+        personGroupId: "test",
         personId: id,
         detectionModel: detectionModel03,
       },
@@ -113,7 +114,7 @@ export default function CreateUserForm() {
         const s = im.split(",");
         const blob = b64toBlob(s[1]);
         const response = await faceApiForAddFaceToPerson.post(
-          `/face/v1.0/persongroups/ai/persons/${id}/persistedFaces`,
+          `/face/v1.0/persongroups/test/persons/${id}/persistedFaces`,
           blob
         );
         numberOfPictures = numberOfPictures + 1;
@@ -130,7 +131,7 @@ export default function CreateUserForm() {
       
       return (
           <div className="formDiv">
-            <h2 className="header">You have to take 10 pictures</h2>
+            <h2 className="header">You have to take 2 pictures</h2>
             <p className="header">You have now taken {numberOfPictures} pictures</p>
               <div className="webcam-img">
                   {image == '' ? <Webcam
@@ -157,7 +158,7 @@ export default function CreateUserForm() {
                           className="submitButton">Take picture</button>
                   }
               </div>
-              {numberOfPictures == 10 ?
+              {numberOfPictures == 2 ?
               <div>
                 <p>You have taken enough pictures now!</p>
                 <Link to='/'>
